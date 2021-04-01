@@ -6,7 +6,7 @@
 
 player::player(int uniqueId) :
 	handle(uniqueId),
-	queueId(0),
+	//queueId(0),
 	invitorUniqueId(0),
 	remainSleepingFrames(0),
 	leaving(false),
@@ -21,7 +21,7 @@ void player::getFlowerFromQueue()
 	haveFlower = true;
 }
 
-void player::work()
+void player::work(int queueId)
 {
 	gamemanager* gameMgr = currGame->getGameMgr();
 	playerQueue* playingQueue = currGame->getPlayingQueue();
@@ -51,7 +51,7 @@ void player::work()
 		for (;randXA > 3;--randXA)
 		{
 			int randXB = playRand();
-			int leavingPlayerIdx = (this->queueId + randXB) % playingQueue->getQueueLen();
+			int leavingPlayerIdx = (queueId + randXB) % playingQueue->getQueueLen();
 			playingQueue->addBlack(leavingPlayerIdx);
 		}
 

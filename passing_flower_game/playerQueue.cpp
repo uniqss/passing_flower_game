@@ -11,7 +11,7 @@ playerQueue::playerQueue() :
 
 void playerQueue::addPlayer(player* p)
 {
-	p->setQueueId(players.size());
+	//p->setQueueId(players.size());
 	players.push_back(p);
 }
 
@@ -30,7 +30,7 @@ bool playerQueue::workOnePlayer()
 	// work for current player
 	player* p = players[workingIdx];
 	p->getFlowerFromQueue();
-	p->work();
+	p->work(workingIdx);
 	p->passFlower2Queue();
 	// add workingIdx
 	++workingIdx;

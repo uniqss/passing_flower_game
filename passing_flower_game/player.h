@@ -6,7 +6,7 @@ class game;
 class player : public handle
 {
 	// 队伍中的id
-	int queueId;
+	//int queueId;
 	// 唯一ID 使用handle里面的i
 	//int uniqueId;
 
@@ -23,10 +23,10 @@ class player : public handle
 public:
 	player(int uniqueId);
 
-	void setQueueId(int id) { queueId = id; }
+	//void setQueueId(int id) { queueId = id; }
 	void setGame(game* pGame) { currGame = pGame; }
 	void getFlowerFromQueue();
-	void work();
+	void work(int queueId);
 	void passFlower2Queue();
 	void addBlack() { leaving = true; }
 	bool isLeaving() { return leaving; }
