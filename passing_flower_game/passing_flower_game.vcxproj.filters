@@ -68,6 +68,12 @@
     <ClInclude Include="mersenne_rand.h">
       <Filter>rand</Filter>
     </ClInclude>
+    <ClInclude Include="dmlog.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ulog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="问题.txt">

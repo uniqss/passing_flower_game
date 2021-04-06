@@ -18,7 +18,7 @@ void game::init()
 
 	for (int i = 0; i < 5; i++)
 	{
-		player* p = new player(genPlayerUniqueId());
+		player* p = new player(genPlayerUniqueId(), true);
 		p->setGame(this);
 		playingQueue.addPlayer(p);
 	}

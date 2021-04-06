@@ -2,6 +2,8 @@
 #include "player.h"
 #include <unordered_set>
 
+#include "ulog.h"
+
 playerQueue::playerQueue() :
 	workingIdx(0),
 	teamOwnFlower(false)
@@ -57,7 +59,7 @@ void playerQueue::addBlack(int leavingPlayerIdx)
 
 	int idx = leavingPlayerIdx % players.size();
 	player* p = players[idx];
-	p->addBlack();
+	p->setLeaving(true);
 }
 
 void playerQueue::mergeAnotherQueue(playerQueue* anotherQueue)
@@ -81,13 +83,19 @@ void playerQueue::removeLeavingInvitedPlayers()
 	}
 
 	players.erase(std::remove_if(players.begin(), players.end(), [&leavingHandles](player* p) {
-		return leavingHandles.find(p->getHandleId()) != leavingHandles.end();
+		return leavingHandles.find(p->getInvitorUniqueId()) != leavingHandles.end();
 		}), players.end());
 }
 
 void playerQueue::removeLeavingPlayers()
 {
+	auto playerCountPre = players.size();
+
 	players.erase(std::remove_if(players.begin(), players.end(), [](player* p) {
-		return p->isLeaving();
+		return !p->isInitialPlayer() && p->isLeaving();
 		}), players.end());
+
+	auto playerCountPost = players.size();
+	ULOG_DEBUG("removeLeavingPlayers playerCountPre:{} playerCountPost:{}", playerCountPre, playerCountPost);
+	std::for_each(players.begin(), players.end(), [](player* p) {p->setLeaving(false); });
 }

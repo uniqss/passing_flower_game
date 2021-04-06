@@ -116,6 +116,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>E:\projects\spdlog\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +132,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>E:\projects\spdlog\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +153,7 @@
     <ClCompile Include="playerQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dmlog.hpp" />
     <ClInclude Include="fake_rand.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="handle.h" />
@@ -157,6 +162,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="gamemanager.h" />
     <ClInclude Include="playerQueue.h" />
+    <ClInclude Include="ulog.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="问题.txt" />
