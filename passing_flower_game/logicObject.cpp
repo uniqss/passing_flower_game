@@ -24,3 +24,18 @@ bool logicObject::isLeaving()
 {
 	return true;
 }
+
+bool logicObject::NeedRemoveOnInvitorLeave(const std::unordered_set<int>& leavingInvitorHandles)
+{
+	return true;
+}
+
+bool logicObject::NeedRemoveOnFrameEnd()
+{
+	return true;
+}
+
+void logicObject::OnFrameEnd()
+{
+
+}

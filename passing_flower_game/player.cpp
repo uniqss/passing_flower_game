@@ -1,11 +1,11 @@
 #include "player.h"
 #include "gamemanager.h"
-#include "playerQueue.h"
+#include "logicQueue.h"
 #include "game.h"
 #include "fake_rand.h"
 
 player::player(int uniqueId, bool _isInitialPlayer) :
-	handle(uniqueId),
+	logicObject(uniqueId),
 	initialPlayer(_isInitialPlayer),
 	//queueId(0),
 	invitorUniqueId(0),
@@ -89,6 +89,21 @@ void player::work(int queueId)
 void player::passFlower2Queue()
 {
 	haveFlower = false;
+}
+
+bool player::NeedRemoveOnInvitorLeave(const std::unordered_set<int>& leavingInvitorHandles)
+{
+	return leavingInvitorHandles.find(this->getInvitorUniqueId()) != leavingInvitorHandles.end();
+}
+
+bool player::NeedRemoveOnFrameEnd()
+{
+	return !this->isInitialPlayer() && this->isLeaving();
+}
+
+void player::OnFrameEnd()
+{
+	this->setLeaving(false);
 }
 
 int player::playRand()

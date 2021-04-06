@@ -45,9 +45,9 @@ void game::start()
 		playingQueue.mergeAnotherQueue(&waitingQueue);
 
 		// 所有被手上有黑桃(等待退出)的玩家邀请的玩家离开队伍
-		playingQueue.removeLeavingInvitedPlayers();
+		playingQueue.removeLeavingInvitedLogicObjects();
 		// 所有手上有黑桃(等待退出)的玩家离开队伍。
-		playingQueue.removeLeavingPlayers();
+		playingQueue.removeLeavingLogicObjects();
 
 		// 管理员从地上拿一张梅花牌(回合id)到自己手上。
 		gameMgr.addRoundId();

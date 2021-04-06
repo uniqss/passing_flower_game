@@ -71,31 +71,33 @@ void logicQueue::mergeAnotherQueue(logicQueue* anotherQueue)
 	anotherQueue->logicObjects.clear();
 }
 
-void logicQueue::removeLeavingInvitedPlayers()
+void logicQueue::removeLeavingInvitedLogicObjects()
 {
-	unordered_set<int> leavingHandles;
+	unordered_set<int> leavingObjectHandles;
 	for (auto* p : logicObjects)
 	{
 		if (p->isLeaving())
 		{
-			leavingHandles.insert(p->getHandleId());
+			leavingObjectHandles.insert(p->getHandleId());
 		}
 	}
 
-	logicObjects.erase(std::remove_if(logicObjects.begin(), logicObjects.end(), [&leavingHandles](player* p) {
-		return leavingHandles.find(p->getInvitorUniqueId()) != leavingHandles.end();
+	logicObjects.erase(std::remove_if(logicObjects.begin(), logicObjects.end(), [&leavingObjectHandles](logicObject* p) {
+		return p->NeedRemoveOnInvitorLeave(leavingObjectHandles);
 		}), logicObjects.end());
 }
 
-void logicQueue::removeLeavingPlayers()
+void logicQueue::removeLeavingLogicObjects()
 {
 	auto playerCountPre = logicObjects.size();
 
-	logicObjects.erase(std::remove_if(logicObjects.begin(), logicObjects.end(), [](player* p) {
-		return !p->isInitialPlayer() && p->isLeaving();
+	logicObjects.erase(std::remove_if(logicObjects.begin(), logicObjects.end(), [](logicObject* p) {
+		return p->NeedRemoveOnFrameEnd();
 		}), logicObjects.end());
 
 	auto playerCountPost = logicObjects.size();
 	ULOG_DEBUG("removeLeavingPlayers playerCountPre:{} playerCountPost:{}", playerCountPre, playerCountPost);
-	std::for_each(logicObjects.begin(), logicObjects.end(), [](player* p) {p->setLeaving(false); });
+	std::for_each(logicObjects.begin(), logicObjects.end(), [](logicObject* p) {
+		p->OnFrameEnd();
+		});
 }

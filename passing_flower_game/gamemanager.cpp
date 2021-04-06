@@ -1,5 +1,5 @@
 #include "gamemanager.h"
-#include "playerQueue.h"
+#include "logicQueue.h"
 
 gamemanager::gamemanager() :
 	totalLogicFrameCount(0),

@@ -1,6 +1,6 @@
 #pragma once
 #include "gamemanager.h"
-#include "playerQueue.h"
+#include "logicQueue.h"
 #include "player.h"
 class game
 {

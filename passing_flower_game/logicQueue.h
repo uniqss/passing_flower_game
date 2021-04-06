@@ -25,8 +25,8 @@ public:
 	// merge another queue into this queue.
 	void mergeAnotherQueue(logicQueue* anotherQueue);
 
-	void removeLeavingInvitedPlayers();
+	void removeLeavingInvitedLogicObjects();
 
-	void removeLeavingPlayers();
+	void removeLeavingLogicObjects();
 };
 

@@ -31,6 +31,10 @@ public:
 	virtual void setLeaving(bool _leaving) { leaving = _leaving; }
 	virtual bool isLeaving() { return leaving; }
 
+	virtual bool NeedRemoveOnInvitorLeave(const std::unordered_set<int>& leavingInvitorHandles);
+	virtual bool NeedRemoveOnFrameEnd();
+	virtual void OnFrameEnd();
+
 	bool isInitialPlayer() { return initialPlayer; }
 	//void setQueueId(int id) { queueId = id; }
 	void setGame(game* pGame) { currGame = pGame; }
