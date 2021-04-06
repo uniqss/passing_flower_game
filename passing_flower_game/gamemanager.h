@@ -1,5 +1,5 @@
 #pragma once
-class playerQueue;
+class logicQueue;
 class gamemanager
 {
 public:
@@ -12,8 +12,8 @@ public:
 
 public:
 	gamemanager();
-	void passFlower2Queue(playerQueue* queue);
-	void getFlowerFromQueue(playerQueue* queue);
+	void passFlower2Queue(logicQueue* queue);
+	void getFlowerFromQueue(logicQueue* queue);
 	void addDimond();
 	void addRoundId();
 };

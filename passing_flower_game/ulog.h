@@ -49,6 +49,7 @@ public:
 	~ULog()
 	{
 		spdlog::drop_all();
+		logger_ = nullptr;
 	}
 
 	static ULog* Instance()

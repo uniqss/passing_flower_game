@@ -146,22 +146,23 @@
     <ClCompile Include="fake_rand.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="handle.cpp" />
+    <ClCompile Include="logicObject.cpp" />
+    <ClCompile Include="logicQueue.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mersenne_rand.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="gamemanager.cpp" />
-    <ClCompile Include="playerQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dmlog.hpp" />
     <ClInclude Include="fake_rand.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="handle.h" />
+    <ClInclude Include="logicObject.h" />
+    <ClInclude Include="logicQueue.h" />
     <ClInclude Include="mersenne_rand.h" />
     <ClInclude Include="stl.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="gamemanager.h" />
-    <ClInclude Include="playerQueue.h" />
     <ClInclude Include="ulog.h" />
   </ItemGroup>
   <ItemGroup>

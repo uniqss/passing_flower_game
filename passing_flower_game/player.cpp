@@ -25,8 +25,8 @@ void player::getFlowerFromQueue()
 void player::work(int queueId)
 {
 	gamemanager* gameMgr = currGame->getGameMgr();
-	playerQueue* playingQueue = currGame->getPlayingQueue();
-	playerQueue* waitingQueue = currGame->getWaitingQueue();
+	logicQueue* playingQueue = currGame->getPlayingQueue();
+	logicQueue* waitingQueue = currGame->getWaitingQueue();
 	// 第2步、0号交给管理员1张方片牌(经过的总执行帧数)
 	gameMgr->addDimond();
 
@@ -71,7 +71,7 @@ void player::work(int queueId)
 		{
 			player* p = new player(currGame->genPlayerUniqueId(), false);
 			p->setGame(currGame);
-			waitingQueue->addPlayer(p);
+			waitingQueue->addLogicObject(p);
 		}
 		// 如果randZA=4，则邀请一个新玩家到等待队列，被邀请玩家的邀请人为0号。当0号退出时，被邀请玩家退出
 		if (randZA == 400)
@@ -79,7 +79,7 @@ void player::work(int queueId)
 			player* p = new player(currGame->genPlayerUniqueId(), false);
 			p->setGame(currGame);
 			p->setInvitorUniqueId(this->getHandleId());
-			waitingQueue->addPlayer(p);
+			waitingQueue->addLogicObject(p);
 		}
 	} while (false);
 

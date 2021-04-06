@@ -5,8 +5,8 @@
 class game
 {
 	gamemanager gameMgr;
-	playerQueue playingQueue;
-	playerQueue waitingQueue;
+	logicQueue playingQueue;
+	logicQueue waitingQueue;
 	bool playing;
 
 public:
@@ -18,7 +18,7 @@ public:
 	void stop();
 
 	gamemanager* getGameMgr() { return &gameMgr; }
-	playerQueue* getPlayingQueue() { return &playingQueue; }
-	playerQueue* getWaitingQueue() { return &waitingQueue; }
+	logicQueue* getPlayingQueue() { return &playingQueue; }
+	logicQueue* getWaitingQueue() { return &waitingQueue; }
 };
 

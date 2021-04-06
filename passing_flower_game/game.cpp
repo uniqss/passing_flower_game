@@ -20,7 +20,7 @@ void game::init()
 	{
 		player* p = new player(genPlayerUniqueId(), true);
 		p->setGame(this);
-		playingQueue.addPlayer(p);
+		playingQueue.addLogicObject(p);
 	}
 }
 

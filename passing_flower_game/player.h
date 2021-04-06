@@ -1,9 +1,9 @@
 #pragma once
 
-#include "handle.h"
+#include "logicObject.h"
 
 class game;
-class player : public handle
+class player : public logicObject
 {
 	// 是否是初始队伍
 	bool initialPlayer;
@@ -25,14 +25,15 @@ class player : public handle
 public:
 	player(int uniqueId, bool isInitialPlayer);
 
+	virtual void getFlowerFromQueue();
+	virtual void work(int queueId);
+	virtual void passFlower2Queue();
+	virtual void setLeaving(bool _leaving) { leaving = _leaving; }
+	virtual bool isLeaving() { return leaving; }
+
 	bool isInitialPlayer() { return initialPlayer; }
 	//void setQueueId(int id) { queueId = id; }
 	void setGame(game* pGame) { currGame = pGame; }
-	void getFlowerFromQueue();
-	void work(int queueId);
-	void passFlower2Queue();
-	bool isLeaving() { return leaving; }
-	void setLeaving(bool _leaving) { leaving = _leaving; }
 	void addHeart(int sleepFrames) { remainSleepingFrames += sleepFrames; }
 
 	int playRand();

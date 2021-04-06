@@ -1,18 +1,18 @@
 #pragma once
 #include "stl.h"
-class player;
+class logicObject;
 
-class playerQueue
+class logicQueue
 {
 	int workingIdx;
 	bool teamOwnFlower;
-	vector<player*> players;
+	vector<logicObject*> logicObjects;
 public:
-	playerQueue();
+	logicQueue();
 
 public:
-	void addPlayer(player* p);
-	int getQueueLen() { return (int)players.size(); }
+	void addLogicObject(logicObject* p);
+	int getQueueLen() { return (int)logicObjects.size(); }
 	void getFlower();
 
 	// return whether all queue players already got flower.
@@ -23,7 +23,7 @@ public:
 	void addBlack(int leavingPlayerIdx);
 
 	// merge another queue into this queue.
-	void mergeAnotherQueue(playerQueue* anotherQueue);
+	void mergeAnotherQueue(logicQueue* anotherQueue);
 
 	void removeLeavingInvitedPlayers();
 

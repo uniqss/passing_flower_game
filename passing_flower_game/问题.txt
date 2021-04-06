@@ -16,3 +16,15 @@
 这个例子不太好，manager只有一个且不会销毁
 
 新搞个例子吧
+
+===============
+不要用协程了，要么弄套自己的脚本体系，要么就状态机吧。搞套脚本体系时间来不及，630以前就状态机实现吧。
+todolist:
+	限CPU：现在CPU是100%，要在每帧做一次sleep，计算帧剩余时间进行sleep，并使用超时补帧策略
+	限sleep:如果playerQueue里面的对象越来越多，达到临界点时，sleep的时间就变成了0，所以每帧更新的对象必须有上限，
+		可以有sleep但必须有上限，有了上限以后，game里面的调度就不再是for(p:playerQueue){player_logic};after_logic();
+		而是for(i=ilast;i<ilast+framemax&&(i-ilast>playerQueue.size());i++){player[i%playerqueue.size()].logic};after_logic();
+	所有对象进行抽象
+	改成trigger-condition-action的思路
+	去掉gamemanager
+	想办法创建一种新对象，逻辑与player不一样，playerQueue改成logicQueue，存放player和新对象

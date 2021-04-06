@@ -9,13 +9,13 @@ gamemanager::gamemanager() :
 
 }
 
-void gamemanager::passFlower2Queue(playerQueue* queue)
+void gamemanager::passFlower2Queue(logicQueue* queue)
 {
 	haveFlower = false;
 	queue->getFlower();
 }
 
-void gamemanager::getFlowerFromQueue(playerQueue* queue)
+void gamemanager::getFlowerFromQueue(logicQueue* queue)
 {
 	queue->passFlower();
 	haveFlower = true;
