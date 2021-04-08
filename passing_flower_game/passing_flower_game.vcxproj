@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="action.cpp" />
+    <ClCompile Include="condition.cpp" />
+    <ClCompile Include="event.cpp" />
     <ClCompile Include="fake_rand.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="handle.cpp" />
@@ -152,8 +155,12 @@
     <ClCompile Include="mersenne_rand.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="gamemanager.cpp" />
+    <ClCompile Include="trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="action.h" />
+    <ClInclude Include="condition.h" />
+    <ClInclude Include="event.h" />
     <ClInclude Include="fake_rand.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="handle.h" />
@@ -163,6 +170,7 @@
     <ClInclude Include="stl.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="gamemanager.h" />
+    <ClInclude Include="trigger.h" />
     <ClInclude Include="ulog.h" />
   </ItemGroup>
   <ItemGroup>

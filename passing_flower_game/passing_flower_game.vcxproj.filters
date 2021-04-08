@@ -45,6 +45,18 @@
     <ClCompile Include="logicQueue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="trigger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="condition.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="action.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stl.h">
@@ -75,6 +87,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="logicQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="trigger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="condition.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="action.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
