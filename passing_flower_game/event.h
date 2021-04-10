@@ -1,5 +1,7 @@
 #pragma once
-class event
+
+#include "handle.h"
+
+class event : public handle
 {
 };
-
