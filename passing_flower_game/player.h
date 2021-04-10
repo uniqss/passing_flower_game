@@ -15,11 +15,6 @@ class player : public logicObject
 	// ÑûÇëÕß Î¨Ò»ID
 	int invitorUniqueId;
 
-	// heart
-	int remainSleepingFrames;
-	// black
-	bool leaving;
-
 	bool haveFlower;
 	game* currGame;
 public:
@@ -28,8 +23,6 @@ public:
 	virtual void getFlowerFromQueue();
 	virtual void work(int queueId);
 	virtual void passFlower2Queue();
-	virtual void setLeaving(bool _leaving) { leaving = _leaving; }
-	virtual bool isLeaving() { return leaving; }
 
 	virtual bool NeedRemoveOnInvitorLeave(const std::unordered_set<int>& leavingInvitorHandles);
 	virtual bool NeedRemoveOnFrameEnd();
@@ -38,7 +31,6 @@ public:
 	bool isInitialPlayer() { return initialPlayer; }
 	//void setQueueId(int id) { queueId = id; }
 	void setGame(game* pGame) { currGame = pGame; }
-	void addHeart(int sleepFrames) { remainSleepingFrames += sleepFrames; }
 
 	int playRand();
 	int getInvitorUniqueId() { return invitorUniqueId; }

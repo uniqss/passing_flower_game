@@ -101,6 +101,12 @@
     <ClInclude Include="event.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="gameConstants.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="timehelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="问题.txt">

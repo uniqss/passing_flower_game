@@ -7,6 +7,7 @@ class logicQueue
 	int workingIdx;
 	bool teamOwnFlower;
 	vector<logicObject*> logicObjects;
+	//vector<logicObject*> logicObjects;
 public:
 	logicQueue();
 
@@ -14,9 +15,6 @@ public:
 	void addLogicObject(logicObject* p);
 	int getQueueLen() { return (int)logicObjects.size(); }
 	void getFlower();
-
-	// return whether all queue players already got flower.
-	bool workOnePlayer();
 
 	void passFlower();
 
@@ -28,5 +26,9 @@ public:
 	void removeLeavingInvitedLogicObjects();
 
 	void removeLeavingLogicObjects();
+
+	void OnFrameBegin();
+	void WorkThisFrame();
+	void OnFrameEnd();
 };
 

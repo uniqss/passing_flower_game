@@ -14,7 +14,8 @@ public:
 	gamemanager();
 	void passFlower2Queue(logicQueue* queue);
 	void getFlowerFromQueue(logicQueue* queue);
-	void addDimond();
+	
+	void addTotalLogicFrameCount();
 	void addRoundId();
 };
 

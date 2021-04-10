@@ -9,8 +9,6 @@ player::player(int uniqueId, bool _isInitialPlayer) :
 	initialPlayer(_isInitialPlayer),
 	//queueId(0),
 	invitorUniqueId(0),
-	remainSleepingFrames(0),
-	leaving(false),
 	haveFlower(false),
 	currGame(nullptr)
 {
@@ -27,27 +25,27 @@ void player::work(int queueId)
 	gamemanager* gameMgr = currGame->getGameMgr();
 	logicQueue* playingQueue = currGame->getPlayingQueue();
 	logicQueue* waitingQueue = currGame->getWaitingQueue();
-	// 第2步、0号交给管理员1张方片牌(经过的总执行帧数)
-	gameMgr->addDimond();
+	// 第2步、经过的总执行帧数
+	gameMgr->addTotalLogicFrameCount();
 
 	do
 	{
-		// 第3步、如果0号有黑桃(等待退出)，跳到第99步
-		if (leaving)
+		// 第3步、leaving
+		if (isLeaving())
 		{
 			break;
 		}
 
-		// 第4步、如果0号有红桃牌(睡眠)，交给管理员1张红桃牌(睡眠)，跳到第99步
-		if (remainSleepingFrames > 0)
+		// 第4步、sleep判定
+		if (isSleeping())
 		{
-			--remainSleepingFrames;
+			sleepOneFrame();
 			break;
 		}
 
-		// 第5步、如果0号没有黑桃(等待退出)且没有红桃牌(睡眠)，第一轮掷骰子(X)，范围[1,6]结果为randXA，
+		// 第5步、如果0号非(等待退出)且非(睡眠)，第一轮掷骰子(X)，范围[1,6]结果为randXA，
 		// 如果randXA>3(4,5,6)，则再掷randXA-3次骰子，每次结果为randXB，从0号往队尾数randXB个玩家，
-		// 管理员交给他一张黑桃(等待退出)。
+		// 管理员交给他一张(等待退出)。
 		int randXA = playRand();
 		for (; randXA > 300; --randXA)
 		{
@@ -56,15 +54,15 @@ void player::work(int queueId)
 			playingQueue->addBlack(leavingPlayerIdx);
 		}
 
-		// 第6步、如果0号没有黑桃(等待退出)且没有红桃牌(睡眠)，第二轮掷骰子(Y)，范围[1,6]结果为randYA,
-		// 如果randYA>3(4,5,6)，则管理员发给0号randYA-3张红桃牌(睡眠)
+		// 第6步、如果0号非(等待退出)且非(睡眠)，第二轮掷骰子(Y)，范围[1,6]结果为randYA,
+		// 如果randYA>3(4,5,6)，则管理员发给0号randYA-3张(睡眠)
 		int randYA = playRand();
 		if (randYA > 300)
 		{
-			addHeart(randYA / 100 - 3);
+			addSleepingFrames(randYA / 100 - 3);
 		}
 
-		// 第7步、如果0号没有黑桃(等待退出)且没有红桃牌(睡眠)，第三轮掷骰子(Z)，范围[1,6]结果为randZA，
+		// 第7步、如果0号非(等待退出)且非(睡眠)，第三轮掷骰子(Z)，范围[1,6]结果为randZA，
 		// 如果randZA>4(5,6)，则邀请randZA-4个新玩家到等待队列，被邀请玩家无邀请人。
 		int randZA = playRand();
 		for (; randZA > 400; randZA -= 100)

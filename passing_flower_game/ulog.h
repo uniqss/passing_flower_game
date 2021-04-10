@@ -4,6 +4,7 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/async.h"
 #include "spdlog/sinks/daily_file_sink.h"
+#include "spdlog/sinks/hourly_file_sink.h"
 #include "spdlog/sinks/stdout_sinks.h"
 #include <filesystem>
 
@@ -40,7 +41,8 @@ public:
 #if 1
 		std::vector<spdlog::sink_ptr> sinks;
 		sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_st>());
-		sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_st>(strFile, 4, 0));
+		//sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_st>(strFile, 4, 0));
+		sinks.push_back(std::make_shared<spdlog::sinks::hourly_file_sink_st>(strFile));
 		logger_ = std::make_shared<spdlog::logger>("logger", begin(sinks), end(sinks));
 		spdlog::register_logger(logger_);
 #else

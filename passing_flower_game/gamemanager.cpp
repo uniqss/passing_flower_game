@@ -21,7 +21,7 @@ void gamemanager::getFlowerFromQueue(logicQueue* queue)
 	haveFlower = true;
 }
 
-void gamemanager::addDimond()
+void gamemanager::addTotalLogicFrameCount()
 {
 	totalLogicFrameCount++;
 }

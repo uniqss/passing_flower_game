@@ -1,11 +1,14 @@
 #include "logicObject.h"
 
-void logicObject::getFlowerFromQueue()
+logicObject::logicObject(int handleId) :
+	handle(handleId)
+	, remainSleepingFrames(0)
+	, leaving(false)
 {
 
 }
 
-void logicObject::work(int queueId)
+void logicObject::getFlowerFromQueue()
 {
 
 }
@@ -13,16 +16,6 @@ void logicObject::work(int queueId)
 void logicObject::passFlower2Queue()
 {
 
-}
-
-void logicObject::setLeaving(bool _leaving)
-{
-
-}
-
-bool logicObject::isLeaving()
-{
-	return true;
 }
 
 bool logicObject::NeedRemoveOnInvitorLeave(const std::unordered_set<int>& leavingInvitorHandles)

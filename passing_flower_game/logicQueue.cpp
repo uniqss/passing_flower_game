@@ -4,6 +4,8 @@
 
 #include "ulog.h"
 
+#include "gameConstants.h"
+
 logicQueue::logicQueue() :
 	workingIdx(0),
 	teamOwnFlower(false)
@@ -20,29 +22,6 @@ void logicQueue::addLogicObject(logicObject* p)
 void logicQueue::getFlower()
 {
 	teamOwnFlower = true;
-}
-
-bool logicQueue::workOnePlayer()
-{
-	if (logicObjects.empty())
-	{
-		return true;
-	}
-
-	// work for current player
-	logicObject* p = logicObjects[workingIdx];
-	p->getFlowerFromQueue();
-	p->work(workingIdx);
-	p->passFlower2Queue();
-	// add workingIdx
-	++workingIdx;
-	if (workingIdx >= (int)logicObjects.size())
-	{
-		workingIdx = 0;
-		return true;
-	}
-
-	return false;
 }
 
 void logicQueue::passFlower()
@@ -100,4 +79,33 @@ void logicQueue::removeLeavingLogicObjects()
 	std::for_each(logicObjects.begin(), logicObjects.end(), [](logicObject* p) {
 		p->OnFrameEnd();
 		});
+}
+
+void logicQueue::OnFrameBegin()
+{
+}
+
+void logicQueue::WorkThisFrame()
+{
+	if (logicObjects.empty())
+	{
+		return;
+	}
+
+	int i = 0;
+	for (i = 0; i < FRAME_LOGICOBJECT_WORK_MAX && i < getQueueLen(); i++)
+	{
+		// work for current player
+		int idx = (workingIdx + i) % logicObjects.size();
+		logicObject* p = logicObjects[idx];
+		p->getFlowerFromQueue();
+		p->work(idx);
+		p->passFlower2Queue();
+	}
+	workingIdx = (workingIdx + i) % logicObjects.size();
+}
+
+void logicQueue::OnFrameEnd()
+{
+
 }
