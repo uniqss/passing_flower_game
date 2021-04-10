@@ -96,7 +96,7 @@ void logicQueue::removeLeavingLogicObjects()
 		}), logicObjects.end());
 
 	auto playerCountPost = logicObjects.size();
-	ULOG_DEBUG("removeLeavingPlayers playerCountPre:{} playerCountPost:{}", playerCountPre, playerCountPost);
+	ULOG_DEBUG("playerCountPre:{} playerCountPost:{}", playerCountPre, playerCountPost);
 	std::for_each(logicObjects.begin(), logicObjects.end(), [](logicObject* p) {
 		p->OnFrameEnd();
 		});

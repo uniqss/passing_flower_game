@@ -7,12 +7,20 @@
 #include "spdlog/sinks/stdout_sinks.h"
 #include <filesystem>
 
-#define ULOG_CRITICAL(...) ULog::Instance()->GetLogger()->critical(__VA_ARGS__)
-#define ULOG_ERROR(...) ULog::Instance()->GetLogger()->error(__VA_ARGS__)
-#define ULOG_WARN(...)  ULog::Instance()->GetLogger()->warn(__VA_ARGS__)
-#define ULOG_INFO(...)  ULog::Instance()->GetLogger()->info(__VA_ARGS__)
-#define ULOG_DEBUG(...) ULog::Instance()->GetLogger()->debug(__VA_ARGS__)
-#define ULOG_TRACE(...) ULog::Instance()->GetLogger()->trace(__VA_ARGS__)
+#if defined(WIN32)||defined(_WIN32)||defined(WINDOWS)
+#include <string.h>
+#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
+#else
+#include <string.h>
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+#endif
+
+#define ULOG_CRITICAL(fmt, ...) ULog::Instance()->GetLogger()->critical("{}#{} {} " fmt, __FILENAME__, __LINE__ , __FUNCTION__, __VA_ARGS__)
+#define ULOG_ERROR(fmt,...) ULog::Instance()->GetLogger()->error("{}#{} {} " fmt, __FILENAME__, __LINE__, __FUNCTION__, __VA_ARGS__)
+#define ULOG_WARN(fmt,...)  ULog::Instance()->GetLogger()->warn("{}#{} {} " fmt, __FILENAME__, __LINE__, __FUNCTION__, __VA_ARGS__)
+#define ULOG_INFO(fmt,...)  ULog::Instance()->GetLogger()->info("{}#{} {} " fmt, __FILENAME__, __LINE__, __FUNCTION__, __VA_ARGS__)
+#define ULOG_DEBUG(fmt,...) ULog::Instance()->GetLogger()->debug("{}#{} {} " fmt, __FILENAME__, __LINE__, __FUNCTION__, __VA_ARGS__)
+#define ULOG_TRACE(fmt,...) ULog::Instance()->GetLogger()->trace("{}#{} {} " fmt, __FILENAME__, __LINE__, __FUNCTION__, __VA_ARGS__)
 
 class ULog
 {
@@ -40,6 +48,20 @@ public:
 		logger_ = spdlog::daily_logger_st<spdlog::async_factory>("logger", strFile, 4, 0, false);
 #endif
 
+#endif
+		//logger_->set_pattern("[%Y-%m-%d %H:%M:%S %f] [%t][%l] %v");
+		//logger_->set_pattern("[source %s] [function %10!!] [line %#] %v");
+		// https://github.com/gabime/spdlog/issues/235   redefine the macros to show file name/function/line
+		//logger_->set_pattern("[%Y-%m-%d %H:%M:%S %f] [%t][%l] %v");
+		// default pattern:
+		//logger_->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%l] %v");
+
+#if 1
+		// no thread id
+		logger_->set_pattern("[%Y-%m-%d %H:%M:%S.%e][%L] %v");
+#else
+		// multi thread, debug thread id
+		logger_->set_pattern("[%Y-%m-%d %H:%M:%S.%e][%L][%t] %v");
 #endif
 
 		logger_->set_level((spdlog::level::level_enum)spdlog::level::trace);
