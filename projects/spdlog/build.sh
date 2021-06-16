@@ -5,7 +5,7 @@
 # yum -y install gcc gcc-c++ autoconf libtool automake make
 #
 
-cd libevent-2.1.12-stable
+cd spdlog-1.8.5
 
 BAT_BUILD_TYPE=Release
 
@@ -14,9 +14,7 @@ mkdir -p build
 cd build
 
 
-#cmake -DEVENT__DISABLE_OPENSSL=ON -DEVENT__LIBRARY_TYPE=STATIC ..
-cmake -DEVENT__DISABLE_OPENSSL=ON -DEVENT__LIBRARY_TYPE=STATIC -DBUILD_TESTING=OFF -DEVENT__DISABLE_SAMPLES=ON -DEVENT__DISABLE_TESTS=ON -DEVENT__DISABLE_BENCHMARK=ON ..
-#cmake --build . --config Release
+cmake -A x64 -DCMAKE_BUILD_TYPE=$BAT_BUILD_TYPE ..
 cmake --build . --config $BAT_BUILD_TYPE
 
 
