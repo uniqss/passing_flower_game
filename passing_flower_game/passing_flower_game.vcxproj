@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\spdlog\include;..\..\sol2\vendor\lua-5.3.5\src;..\..\sol2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\spdlog\include;..\..\sol2\vendor\lua-5.3.5\src;..\..\sol2\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
