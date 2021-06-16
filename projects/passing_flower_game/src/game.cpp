@@ -48,20 +48,20 @@ void game::start()
 
 		playingQueue.OnFrameEnd();
 
-		// todo @uniqs ÕâÀïµÄ merge ÓÐÎÊÌâ£¬ÐèÒªÍù¡¾µ±Ç°µÄ¶ÓÎ²¡¿²å£¬Õâ¸ö¶ÓÎ²ÐèÒª¼ÆËã£¬¶ø²»ÊÇÖ±½ÓÆ´µ½Î²°ÍÉÏ
-		// Õû¶ÓËùÓÐÍæ¼ÒÍê³Éºó
-		// °ÑµÈ´ý¶ÓÁÐ¼ÓÈëµ½µ±Ç°¶ÓÁÐµÄÎ²°ÍÉÏ
+		// todo @uniqs è¿™é‡Œçš„ merge æœ‰é—®é¢˜ï¼Œéœ€è¦å¾€ã€å½“å‰çš„é˜Ÿå°¾ã€‘æ’ï¼Œè¿™ä¸ªé˜Ÿå°¾éœ€è¦è®¡ç®—ï¼Œè€Œä¸æ˜¯ç›´æŽ¥æ‹¼åˆ°å°¾å·´ä¸Š
+		// æ•´é˜Ÿæ‰€æœ‰çŽ©å®¶å®ŒæˆåŽ
+		// æŠŠç­‰å¾…é˜Ÿåˆ—åŠ å…¥åˆ°å½“å‰é˜Ÿåˆ—çš„å°¾å·´ä¸Š
 		playingQueue.mergeAnotherQueue(&waitingQueue);
 
-		// ËùÓÐ±»ÊÖÉÏÓÐ(µÈ´ýÍË³ö)µÄÍæ¼ÒÑûÇëµÄÍæ¼ÒÀë¿ª¶ÓÎé
+		// æ‰€æœ‰è¢«æ‰‹ä¸Šæœ‰(ç­‰å¾…é€€å‡º)çš„çŽ©å®¶é‚€è¯·çš„çŽ©å®¶ç¦»å¼€é˜Ÿä¼
 		playingQueue.removeLeavingInvitedLogicObjects();
-		// ËùÓÐÊÖÉÏÓÐ(µÈ´ýÍË³ö)µÄÍæ¼ÒÀë¿ª¶ÓÎé¡£
+		// æ‰€æœ‰æ‰‹ä¸Šæœ‰(ç­‰å¾…é€€å‡º)çš„çŽ©å®¶ç¦»å¼€é˜Ÿä¼ã€‚
 		playingQueue.removeLeavingLogicObjects();
 
-		// »ØºÏID¡£
+		// å›žåˆIDã€‚
 		gameMgr.addRoundId();
 
-		// ÏÞÖ¡¡¢²¹Ö¡
+		// é™å¸§ã€è¡¥å¸§
 		auto currTimeMS = GetTimeMS();
 		auto frameCost = currTimeMS - lastTimeMS;
 		auto frameStandardTime = (decltype(currTimeMS))100;

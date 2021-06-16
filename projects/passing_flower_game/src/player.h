@@ -5,14 +5,14 @@
 class game;
 class player : public logicObject
 {
-	// ÊÇ·ñÊÇ³õÊ¼¶ÓÎé
+	// æ˜¯å¦æ˜¯åˆå§‹é˜Ÿä¼
 	bool initialPlayer;
-	// ¶ÓÎéÖĞµÄid
+	// é˜Ÿä¼ä¸­çš„id
 	//int queueId;
-	// Î¨Ò»ID Ê¹ÓÃhandleÀïÃæµÄi
+	// å”¯ä¸€ID ä½¿ç”¨handleé‡Œé¢çš„i
 	//int uniqueId;
 
-	// ÑûÇëÕß Î¨Ò»ID
+	// é‚€è¯·è€… å”¯ä¸€ID
 	int invitorUniqueId;
 
 	bool haveFlower;

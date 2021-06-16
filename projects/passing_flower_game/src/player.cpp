@@ -25,27 +25,27 @@ void player::work(int queueId)
 	gamemanager* gameMgr = currGame->getGameMgr();
 	logicQueue* playingQueue = currGame->getPlayingQueue();
 	logicQueue* waitingQueue = currGame->getWaitingQueue();
-	// µÚ2²½¡¢¾­¹ıµÄ×ÜÖ´ĞĞÖ¡Êı
+	// ç¬¬2æ­¥ã€ç»è¿‡çš„æ€»æ‰§è¡Œå¸§æ•°
 	gameMgr->addTotalLogicFrameCount();
 
 	do
 	{
-		// µÚ3²½¡¢leaving
+		// ç¬¬3æ­¥ã€leaving
 		if (isLeaving())
 		{
 			break;
 		}
 
-		// µÚ4²½¡¢sleepÅĞ¶¨
+		// ç¬¬4æ­¥ã€sleepåˆ¤å®š
 		if (isSleeping())
 		{
 			sleepOneFrame();
 			break;
 		}
 
-		// µÚ5²½¡¢Èç¹û0ºÅ·Ç(µÈ´ıÍË³ö)ÇÒ·Ç(Ë¯Ãß)£¬µÚÒ»ÂÖÖÀ÷»×Ó(X)£¬·¶Î§[1,6]½á¹ûÎªrandXA£¬
-		// Èç¹ûrandXA>3(4,5,6)£¬ÔòÔÙÖÀrandXA-3´Î÷»×Ó£¬Ã¿´Î½á¹ûÎªrandXB£¬´Ó0ºÅÍù¶ÓÎ²ÊırandXB¸öÍæ¼Ò£¬
-		// ¹ÜÀíÔ±½»¸øËûÒ»ÕÅ(µÈ´ıÍË³ö)¡£
+		// ç¬¬5æ­¥ã€å¦‚æœ0å·é(ç­‰å¾…é€€å‡º)ä¸”é(ç¡çœ )ï¼Œç¬¬ä¸€è½®æ·éª°å­(X)ï¼ŒèŒƒå›´[1,6]ç»“æœä¸ºrandXAï¼Œ
+		// å¦‚æœrandXA>3(4,5,6)ï¼Œåˆ™å†æ·randXA-3æ¬¡éª°å­ï¼Œæ¯æ¬¡ç»“æœä¸ºrandXBï¼Œä»0å·å¾€é˜Ÿå°¾æ•°randXBä¸ªç©å®¶ï¼Œ
+		// ç®¡ç†å‘˜äº¤ç»™ä»–ä¸€å¼ (ç­‰å¾…é€€å‡º)ã€‚
 		int randXA = playRand();
 		for (; randXA > 300; --randXA)
 		{
@@ -54,16 +54,16 @@ void player::work(int queueId)
 			playingQueue->addBlack(leavingPlayerIdx);
 		}
 
-		// µÚ6²½¡¢Èç¹û0ºÅ·Ç(µÈ´ıÍË³ö)ÇÒ·Ç(Ë¯Ãß)£¬µÚ¶şÂÖÖÀ÷»×Ó(Y)£¬·¶Î§[1,6]½á¹ûÎªrandYA,
-		// Èç¹ûrandYA>3(4,5,6)£¬Ôò¹ÜÀíÔ±·¢¸ø0ºÅrandYA-3ÕÅ(Ë¯Ãß)
+		// ç¬¬6æ­¥ã€å¦‚æœ0å·é(ç­‰å¾…é€€å‡º)ä¸”é(ç¡çœ )ï¼Œç¬¬äºŒè½®æ·éª°å­(Y)ï¼ŒèŒƒå›´[1,6]ç»“æœä¸ºrandYA,
+		// å¦‚æœrandYA>3(4,5,6)ï¼Œåˆ™ç®¡ç†å‘˜å‘ç»™0å·randYA-3å¼ (ç¡çœ )
 		int randYA = playRand();
 		if (randYA > 300)
 		{
 			addSleepingFrames(randYA / 100 - 3);
 		}
 
-		// µÚ7²½¡¢Èç¹û0ºÅ·Ç(µÈ´ıÍË³ö)ÇÒ·Ç(Ë¯Ãß)£¬µÚÈıÂÖÖÀ÷»×Ó(Z)£¬·¶Î§[1,6]½á¹ûÎªrandZA£¬
-		// Èç¹ûrandZA>4(5,6)£¬ÔòÑûÇërandZA-4¸öĞÂÍæ¼Òµ½µÈ´ı¶ÓÁĞ£¬±»ÑûÇëÍæ¼ÒÎŞÑûÇëÈË¡£
+		// ç¬¬7æ­¥ã€å¦‚æœ0å·é(ç­‰å¾…é€€å‡º)ä¸”é(ç¡çœ )ï¼Œç¬¬ä¸‰è½®æ·éª°å­(Z)ï¼ŒèŒƒå›´[1,6]ç»“æœä¸ºrandZAï¼Œ
+		// å¦‚æœrandZA>4(5,6)ï¼Œåˆ™é‚€è¯·randZA-4ä¸ªæ–°ç©å®¶åˆ°ç­‰å¾…é˜Ÿåˆ—ï¼Œè¢«é‚€è¯·ç©å®¶æ— é‚€è¯·äººã€‚
 		int randZA = playRand();
 		for (; randZA > 400; randZA -= 100)
 		{
@@ -71,7 +71,7 @@ void player::work(int queueId)
 			p->setGame(currGame);
 			waitingQueue->addLogicObject(p);
 		}
-		// Èç¹ûrandZA=4£¬ÔòÑûÇëÒ»¸öĞÂÍæ¼Òµ½µÈ´ı¶ÓÁĞ£¬±»ÑûÇëÍæ¼ÒµÄÑûÇëÈËÎª0ºÅ¡£µ±0ºÅÍË³öÊ±£¬±»ÑûÇëÍæ¼ÒÍË³ö
+		// å¦‚æœrandZA=4ï¼Œåˆ™é‚€è¯·ä¸€ä¸ªæ–°ç©å®¶åˆ°ç­‰å¾…é˜Ÿåˆ—ï¼Œè¢«é‚€è¯·ç©å®¶çš„é‚€è¯·äººä¸º0å·ã€‚å½“0å·é€€å‡ºæ—¶ï¼Œè¢«é‚€è¯·ç©å®¶é€€å‡º
 		if (randZA == 400)
 		{
 			player* p = new player(currGame->genPlayerUniqueId(), false);
@@ -81,7 +81,7 @@ void player::work(int queueId)
 		}
 	} while (false);
 
-	// µÚ99²½(99¼ÇÎªµ±Ç°»ØºÏµÄ×îºóÒ»²½)¡¢0ºÅÍæ¼Ò½áÊø
+	// ç¬¬99æ­¥(99è®°ä¸ºå½“å‰å›åˆçš„æœ€åä¸€æ­¥)ã€0å·ç©å®¶ç»“æŸ
 }
 
 void player::passFlower2Queue()
