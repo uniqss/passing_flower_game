@@ -1,4 +1,4 @@
 
 
-rm -rf libevent-2.1.12-stable/build
+rm -rf spdlog-1.8.5/build
 
