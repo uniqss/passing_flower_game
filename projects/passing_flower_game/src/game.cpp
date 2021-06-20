@@ -1,4 +1,4 @@
-#include "game.h"
+﻿#include "game.h"
 
 #include "fake_rand.h"
 

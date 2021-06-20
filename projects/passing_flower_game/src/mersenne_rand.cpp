@@ -54,16 +54,38 @@
 
 #include "mersenne_rand.h"
 
+#if 1
+#define USE_C11_MT19937
+#endif
+
+#ifdef USE_C11_MT19937
+
+#include <random>
+#include <cmath>
+std::mt19937 e2;
+
+#else
 
 static mtrandom __static_mtrandom_object;
 
+#endif
+
+
 void mtsrand(size_t s)
 {
+	#ifdef USE_C11_MT19937
+	e2.seed(s);
+	#else
 	__static_mtrandom_object.reset(s);
+	#endif
 }
 
 size_t mtrandi()
 {
+	#ifdef USE_C11_MT19937
+	return e2();
+	#else
 	return __static_mtrandom_object.rand();
+	#endif
 }
 
