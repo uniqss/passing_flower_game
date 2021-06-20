@@ -14,7 +14,7 @@ mkdir -p build
 cd build
 
 
-cmake -A x64 -DCMAKE_BUILD_TYPE=$BAT_BUILD_TYPE ..
+cmake -DCMAKE_BUILD_TYPE=$BAT_BUILD_TYPE ..
 cmake --build . --config $BAT_BUILD_TYPE
 
 
@@ -24,11 +24,7 @@ mkdir -p ../../include/
 cp -R ./include/* ../../include/
 
 mkdir -p ../../lib/
-cp -R ./build/lib/* ../../lib/
-
-mkdir -p ../../include/
-cp -R ./build/include/* ../../include/
-
+cp -R ./build/*.a ../../lib/
 
 
 cd ..
