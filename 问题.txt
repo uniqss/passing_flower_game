@@ -28,3 +28,6 @@ todolist:
 	改成trigger-condition-action的思路
 	去掉gamemanager
 	想办法创建一种新对象，逻辑与player不一样，playerQueue改成logicQueue，存放player和新对象
+
+
+重新搞一个吧，就叫uniqsbattle
